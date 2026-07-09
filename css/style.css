@@ -1,0 +1,759 @@
+/* ============================================================
+   PORTAFOLIO — style.css
+   Estructura:
+   1. Variables & Reset
+   2. Base & Tipografía
+   3. Navbar
+   4. Hero
+   5. Sección genérica (labels, títulos, subtítulos)
+   6. Sobre mí
+   7. Skills
+   8. Proyectos
+   9. Contacto
+   10. Footer
+   11. Utilidades
+   12. Media queries
+   ============================================================ */
+
+
+/* ============================================================
+   1. VARIABLES & RESET
+   ============================================================ */
+:root {
+  --bg:           #ffffff;
+  --bg-alt:       #f7f7f7;
+  --text:         #111111;
+  --text-dark:    #ffffff;    /* texto sobre fondos oscuros */
+  --muted:        #6b7280;
+  --muted-dark:   #9ca3af;   /* muted sobre fondos oscuros */
+  --accent:       #2563EB;
+  --accent-light: #eff6ff;
+  --border:       #e5e7eb;
+  --border-dark:  #374151;   /* bordes sobre fondos oscuros */
+  --card-bg:      #ffffff;
+  --dark-bg:      #111111;   /* fondo sección contacto */
+  --dark-input:   #1f2937;
+
+  --radius-sm:  8px;
+  --radius-md:  12px;
+  --radius-lg:  14px;
+  --radius-pill: 20px;
+
+  --shadow-card: 0 1px 3px rgba(0,0,0,0.06);
+  --transition:  0.2s ease;
+
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'Courier New', monospace;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+
+/* ============================================================
+   2. BASE & TIPOGRAFÍA
+   ============================================================ */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+main {
+  padding-top: 60px; /* altura del navbar */
+}
+
+
+/* ============================================================
+   3. NAVBAR
+   ============================================================ */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  z-index: 100;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar__logo {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--accent);
+  letter-spacing: -0.5px;
+}
+
+.navbar__logo img {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+}
+.navbar__right {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navbar__links {
+  display: flex;
+  gap: 2rem;
+}
+
+.navbar__links a {
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color var(--transition);
+}
+
+.navbar__links a:hover {
+  color: var(--text);
+}
+
+/* Iconos sociales en el nav */
+.navbar__social {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.navbar__social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  color: var(--muted);
+  transition: border-color var(--transition), color var(--transition);
+}
+
+.navbar__social a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.navbar__social svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+}
+
+
+/* ============================================================
+   4. HERO
+   ============================================================ */
+.hero {
+  min-height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem 2rem 4rem;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.hero__eyebrow {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.hero__eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 2px;
+  background: var(--accent);
+}
+
+.hero__title {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  margin-bottom: 1.5rem;
+}
+
+.hero__title .highlight {
+  color: var(--accent);
+}
+
+.hero__code {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--muted);
+  margin-bottom: 2.5rem;
+  display: flex;
+  align-items: center;
+  min-height: 1.5rem;
+}
+
+.hero__cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.1em;
+  background: var(--accent);
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+  vertical-align: middle;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.hero__desc {
+  font-size: 1.05rem;
+  color: var(--muted);
+  max-width: 500px;
+  line-height: 1.8;
+  margin-bottom: 2.5rem;
+}
+
+.hero__ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Pills de redes sociales bajo los botones */
+.hero__social {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 2.5rem;
+  align-items: center;
+}
+
+.hero__social-label {
+  font-size: 0.75rem;
+  color: var(--border);
+  margin-right: 0.25rem;
+}
+
+.social-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.4rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pill);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 500;
+  transition: border-color var(--transition), color var(--transition);
+}
+
+.social-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.social-pill svg {
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
+}
+
+
+/* ============================================================
+   5. SECCIÓN GENÉRICA — contenedor, label, título, subtítulo
+   ============================================================ */
+.section {
+  padding: 5rem 2rem;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* Secciones de ancho completo (skills, contacto) */
+.section--full {
+  max-width: 100%;
+  padding: 5rem 2rem;
+}
+
+.section__inner {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.section__label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+.section__title {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 0.75rem;
+}
+
+.section__sub {
+  color: var(--muted);
+  font-size: 0.95rem;
+  margin-bottom: 3rem;
+  max-width: 480px;
+}
+
+/* Variante oscura (sección Contacto) */
+.section--dark {
+  background: var(--dark-bg);
+}
+
+.section--dark .section__label { color: var(--accent); }
+.section--dark .section__title { color: var(--text-dark); }
+.section--dark .section__sub   { color: var(--muted-dark); margin-bottom: 1.5rem; }
+
+
+/* ============================================================
+   6. SOBRE MÍ
+   ============================================================ */
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.about__text p {
+  color: var(--muted);
+  line-height: 1.85;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.about__text p strong {
+  color: var(--text);
+}
+
+.about__stats {
+  display: grid;
+  gap: 1rem;
+}
+
+.stat-card {
+  background: var(--bg-alt);
+  border-radius: var(--radius-sm);
+  padding: 1.25rem 1.5rem;
+  border-left: 3px solid var(--accent);
+}
+
+.stat-card__num {
+  font-size: 1.75rem;
+  font-weight: 700;
+  letter-spacing: -1px;
+}
+
+.stat-card__label {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+
+/* ============================================================
+   7. SKILLS
+   ============================================================ */
+.skills {
+  background: var(--bg-alt);
+}
+
+.skills__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.skill-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-card);
+  transition: border-color var(--transition), transform var(--transition);
+}
+
+.skill-card:hover {
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.skill-card__icon {
+  font-size: 1.75rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+
+.skill-card__name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+}
+
+.skill-card__desc {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* Barra de nivel */
+.skill-bar {
+  height: 3px;
+  background: var(--border);
+  border-radius: 2px;
+  margin-top: 0.75rem;
+  overflow: hidden;
+}
+
+.skill-bar__fill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  width: 0;
+  transition: width 1s ease;
+}
+
+
+/* ============================================================
+   8. PROYECTOS
+   ============================================================ */
+.projects__list {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.project-card {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.75rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  position: relative;
+  overflow: hidden;
+  transition: border-color var(--transition);
+}
+
+/* Línea azul al hover */
+.project-card::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity var(--transition);
+}
+
+.project-card:hover {
+  border-color: var(--accent);
+}
+
+.project-card:hover::before {
+  opacity: 1;
+}
+
+/* Variante dashed para "en progreso" */
+.project-card--wip {
+  border-style: dashed;
+  opacity: 0.6;
+  cursor: default;
+}
+
+.project-card__num {
+  font-size: 0.7rem;
+  color: var(--accent);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.project-card__name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.3px;
+}
+
+.project-card__desc {
+  font-size: 0.88rem;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  background: var(--accent-light);
+  color: var(--accent);
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.03em;
+}
+
+.project-card__arrow {
+  font-size: 1.2rem;
+  color: var(--border);
+  align-self: center;
+  transition: color var(--transition), transform var(--transition);
+}
+
+.project-card:hover .project-card__arrow {
+  color: var(--accent);
+  transform: translateX(3px);
+}
+
+
+/* ============================================================
+   9. CONTACTO
+   ============================================================ */
+.contact__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+/* Links de contacto (email, github, linkedin) */
+.contact__links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.contact-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.85rem 1.25rem;
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-sm);
+  color: var(--muted-dark);
+  font-size: 0.88rem;
+  font-weight: 500;
+  transition: border-color var(--transition), color var(--transition), background var(--transition);
+}
+
+.contact-link:hover {
+  border-color: var(--accent);
+  color: var(--text-dark);
+  background: rgba(37, 99, 235, 0.1);
+}
+
+.contact-link svg {
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+  flex-shrink: 0;
+}
+
+/* Formulario */
+.contact__form label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--muted-dark);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.contact__form input,
+.contact__form textarea {
+  width: 100%;
+  background: var(--dark-input);
+  border: 1px solid var(--border-dark);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 1rem;
+  color: var(--text-dark);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.contact__form input:focus,
+.contact__form textarea:focus {
+  border-color: var(--accent);
+}
+
+.contact__form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.contact__form .btn-send {
+  margin-top: 1.25rem;
+  width: 100%;
+  padding: 0.875rem;
+  background: var(--accent);
+  color: var(--text-dark);
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity var(--transition);
+}
+
+.contact__form .btn-send:hover {
+  opacity: 0.85;
+}
+
+
+/* ============================================================
+   10. FOOTER
+   ============================================================ */
+.footer {
+  padding: 2rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.footer a {
+  color: var(--muted);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: color var(--transition);
+}
+
+.footer a:hover {
+  color: var(--accent);
+}
+
+.footer svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+
+/* ============================================================
+   11. UTILIDADES — Botones compartidos
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity var(--transition), transform 0.1s, border-color var(--transition), background var(--transition);
+  text-decoration: none;
+  border: none;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.btn--primary:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+.btn--ghost:hover {
+  border-color: var(--text);
+  background: var(--bg-alt);
+}
+
+
+/* ============================================================
+   12. MEDIA QUERIES
+   ============================================================ */
+@media (max-width: 768px) {
+  .navbar__links {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .about__grid,
+  .contact__grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .hero__title {
+    font-size: 2.5rem;
+    letter-spacing: -1px;
+  }
+}
