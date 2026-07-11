@@ -102,7 +102,7 @@
 
         try {
 
-            const response = await fetch("http://localhost:3000/contacto", {
+            const response = await fetch("https://mi-portafolio-backend-1i56.onrender.com/contacto", {
 
                 method: "POST",
 
