@@ -1,12 +1,12 @@
-const transporter = require("../config/mail");
+const resend = require("../config/resend");
 
 async function enviarCorreo(nombre, correo, mensaje) {
 
-    await transporter.sendMail({
+    await resend.emails.send({
 
-        from: process.env.EMAIL_USER,
+        from: "onboarding@resend.dev",
 
-        to: process.env.EMAIL_USER,
+        to: "alexgr999a@gmail.com",
 
         subject: "Nuevo mensaje desde el portafolio",
 
@@ -21,7 +21,6 @@ async function enviarCorreo(nombre, correo, mensaje) {
 
             <p>${mensaje}</p>
         `
-
     });
 
 }

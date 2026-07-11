@@ -1,11 +1,9 @@
 const enviarCorreo = require("../services/email.service");
 
 async function contacto(req, res) {
-
     const { nombre, correo, mensaje } = req.body;
 
     try {
-
         await enviarCorreo(nombre, correo, mensaje);
 
         res.json({
@@ -14,14 +12,13 @@ async function contacto(req, res) {
 
     } catch (error) {
 
-        console.error(error);
+        console.error("ERROR COMPLETO:", error);
 
         res.status(500).json({
-            mensaje: "Error al enviar el correo."
+            mensaje: error.message,
+            stack: error.stack
         });
-
     }
-
 }
 
 module.exports = contacto;
