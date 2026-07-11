@@ -77,24 +77,63 @@
    3. FORMULARIO DE CONTACTO
    ============================================================ */
 (function initContactForm() {
-  const btn = document.querySelector('.btn-send');
-  if (!btn) return;
 
-  btn.addEventListener('click', () => {
-    const name    = document.getElementById('contact-name')?.value.trim();
-    const email   = document.getElementById('contact-email')?.value.trim();
-    const message = document.getElementById('contact-message')?.value.trim();
+  console.log("Formulario encontrado");
 
-    if (!name || !email || !message) {
-      alert('Por favor completa todos los campos antes de enviar.');
-      return;
-    }
+    const form = document.getElementById("contact__form");
 
-    /* Aquí podrías conectar un servicio como Formspree o EmailJS */
-    alert(`¡Gracias, ${name}! Tu mensaje fue recibido. Pronto me pondré en contacto.`);
+    console.log(form);
 
-    document.getElementById('contact-name').value    = '';
-    document.getElementById('contact-email').value   = '';
-    document.getElementById('contact-message').value = '';
-  });
+    if (!form) return;
+
+
+    form.addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+
+        const name = document.getElementById("contact-name").value.trim();
+        const email = document.getElementById("contact-email").value.trim();
+        const message = document.getElementById("contact-message").value.trim();
+
+        if (!name || !email || !message) {
+            alert("Por favor completa todos los campos.");
+            return;
+        }
+
+        try {
+
+            const response = await fetch("http://localhost:3000/contacto", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    nombre: name,
+                    correo: email,
+                    mensaje: message
+
+                })
+
+            });
+
+            const data = await response.json();
+
+            alert(data.mensaje);
+
+            form.reset();
+
+        } catch (error) {
+
+            console.error(error);
+
+            alert("Ocurrió un error al enviar el formulario.");
+
+        }
+
+    });
+
 })();
