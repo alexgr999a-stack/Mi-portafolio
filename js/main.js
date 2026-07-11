@@ -112,7 +112,7 @@
 
                 body: JSON.stringify({
 
-                    nombre: name,
+                    nombre: name, 
                     correo: email,
                     mensaje: message
 
