@@ -11,7 +11,7 @@ app.use(express.json());
 
 app.use(contactRoutes);
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, ()=>{
 

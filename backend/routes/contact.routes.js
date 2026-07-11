@@ -2,14 +2,8 @@ const express = require("express");
 
 const router = express.Router();
 
-router.post("/contacto", (req, res) => {
+const contacto = require("../controllers/contact.controller");
 
-    console.log(req.body);
-
-    res.json({
-        mensaje: "Mensaje recibido correctamente 🚀"
-    });
-
-});
+router.post("/contacto", contacto);
 
 module.exports = router;
